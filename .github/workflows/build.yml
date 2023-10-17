@@ -3,7 +3,7 @@ name: ci
 on:
   push:
     branches:
-      - 'main'
+      - *
   workflow_dispatch:
 
 jobs:
@@ -39,12 +39,18 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
+      - name: Run tests in docker image
+        uses: docker/build-push-action@v5
+        with:
+          platforms: linux/amd64
+          context: .
+          target: test
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots clean install
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          push: true
+          push: ${{ github.ref == 'refs/heads/main' }}
           context: .
           tags: |
             stevenmassaro/cuofco-mortgage-rate-check:latest
