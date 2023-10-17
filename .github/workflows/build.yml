@@ -44,6 +44,12 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots clean install -DskipITs
+      - name: Save built jar
+        uses: actions/cache/save@v3
+        with:
+          path: |
+            target
+          key: built-jar
 
   docker-build:
     name: Build and push docker image
@@ -63,6 +69,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - uses: actions/checkout@v4
+      - name: Restore built jar
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            target
+          key: built-jar
       - name: Push README to Dockerhub
         uses: christian-korneck/update-container-description-action@v1
         env:
