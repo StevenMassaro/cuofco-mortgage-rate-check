@@ -32,7 +32,7 @@ jobs:
           readme_file: 'README.md'
       - name: Determine alpine version
         id: version
-        run: echo "VERSION=$(head Dockerfile -n 1 | cut -d ':' -f2)" >> $GITHUB_OUTPUT
+        run: echo "VERSION=$(head Dockerfile -n 1 | cut -d ':' -f2 | cut -d " " -f1)" >> $GITHUB_OUTPUT
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
