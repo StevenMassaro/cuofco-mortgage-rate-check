@@ -52,6 +52,7 @@ jobs:
         with:
           push: ${{ github.ref == 'refs/heads/main' }}
           context: .
+          target: production
           tags: |
             stevenmassaro/cuofco-mortgage-rate-check:latest
             stevenmassaro/cuofco-mortgage-rate-check:${{ steps.version.outputs.VERSION }}
