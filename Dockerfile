@@ -8,7 +8,7 @@ COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 COPY src ./src
 RUN chmod +x mvnw && \
-    ./mvnw --batch-mode test
+    ./mvnw --batch-mode verify
 
 FROM base as production
 
