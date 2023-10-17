@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Determine alpine version
         id: version
-        run: echo "VERSION=$(head Dockerfile -n 1 | cut -d ':' -f2)" >> $GITHUB_OUTPUT
+        run: echo "VERSION=$(head Dockerfile -n 1 | cut -d ':' -f2 | cut -d " " -f1)" >> $GITHUB_OUTPUT
       - name: Run tests in docker image
         uses: docker/build-push-action@v5
         with:
