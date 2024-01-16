@@ -1,3 +1,6 @@
+# Archived
+This project is archived as of early 2024 because I created the more generic [mortgage-rate-checker](https://github.com/StevenMassaro/mortgage-rate-check). When I archived this project, it still worked properly, but won't be actively maintained any longer.
+
 # Credit Union of Colorado Mortgage Interest Rate Checker
 
 ![ci](https://github.com/StevenMassaro/cuofco-mortgage-rate-check/actions/workflows/build.yml/badge.svg)
